@@ -13,29 +13,27 @@
  * to license@zend.com so we can send you a copy immediately.
  *
  * @category   Zend
- * @package    Zend_Controller
+ * @package    Zend_Router
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
  */
 
 /**
  * @namespace
  */
-namespace ZendTest\Controller\Router;
+namespace ZendTest\Router;
 
-use Zend\Controller\Router\PriorityList,
+use Zend\Router\PriorityList,
     PHPUnit_Framework_TestCase as TestCase;
 
 /**
  * @category   Zend
- * @package    Zend_Controller
+ * @package    Zend_Router
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Controller
- * @group      Zend_Controller_Router
+ * @group      Zend_Router
  */
 class PriorityListTest extends TestCase
 {

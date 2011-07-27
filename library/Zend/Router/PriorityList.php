@@ -13,8 +13,7 @@
  * to license@zend.com so we can send you a copy immediately.
  *
  * @category   Zend
- * @package    Zend_Controller
- * @subpackage Router
+ * @package    Zend_Router
  * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
  * @version    $Id$
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
@@ -23,18 +22,19 @@
 /**
  * @namespace
  */
-namespace Zend\Controller\Router;
-use Zend\Controller\Router\Route;
+namespace Zend\Router;
+
+use Countable,
+    Iterator;
 
 /**
  * Priority list
  *
- * @package    Zend_Controller
- * @subpackage Router
+ * @package    Zend_Router
  * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
   */
-class PriorityList implements \Iterator, \Countable
+class PriorityList implements Iterator, Countable
 {
     /**
      * Internal list of all routes.
@@ -80,7 +80,7 @@ class PriorityList implements \Iterator, \Countable
         $this->routes[$name] = array(
             'route'    => $route,
             'priority' => $priority,
-            'serial'   => $this->serial++
+            'serial'   => $this->serial++,
         );
     }
 
@@ -143,12 +143,13 @@ class PriorityList implements \Iterator, \Countable
     }
 
     /**
-     * rewind(): defined by \Iterator interface.
+     * rewind(): defined by Iterator interface.
      *
-     * @see    \Iterator::rewind()
+     * @see    Iterator::rewind()
      * @return void
      */
-    public function rewind() {
+    public function rewind() 
+    {
         if (!$this->sorted) {
             $this->sort();
         }
@@ -157,54 +158,59 @@ class PriorityList implements \Iterator, \Countable
     }
 
     /**
-     * current(): defined by \Iterator interface.
+     * current(): defined by Iterator interface.
      *
-     * @see    \Iterator::current()
+     * @see    Iterator::current()
      * @return Route
      */
-    public function current() {
+    public function current() 
+    {
         $node = current($this->routes);
         return ($node !== false ? $node['route'] : false);
     }
 
     /**
-     * key(): defined by \Iterator interface.
+     * key(): defined by Iterator interface.
      *
-     * @see    \Iterator::key()
+     * @see    Iterator::key()
      * @return string
      */
-    public function key() {
+    public function key() 
+    {
         return key($this->routes);
     }
 
     /**
-     * next(): defined by \Iterator interface.
+     * next(): defined by Iterator interface.
      *
-     * @see    \Iterator::next()
+     * @see    Iterator::next()
      * @return Route
      */
-    public function next() {
+    public function next() 
+    {
         $node = next($this->routes);
         return ($node !== false ? $node['route'] : false);
     }
 
     /**
-     * valid(): defined by \Iterator interface.
+     * valid(): defined by Iterator interface.
      *
-     * @see    \Iterator::valid()
+     * @see    Iterator::valid()
      * @return boolean
      */
-    public function valid() {
+    public function valid() 
+    {
         return ($this->current() !== false);
     }
 
     /**
-     * count(): defined by \Countable interface.
+     * count(): defined by Countable interface.
      *
-     * @see    \Countable::count()
+     * @see    Countable::count()
      * @return integer
      */
-    public function count() {
+    public function count() 
+    {
         return $this->count;
     }
 }

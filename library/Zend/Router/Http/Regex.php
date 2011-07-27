@@ -13,27 +13,26 @@
  * to license@zend.com so we can send you a copy immediately.
  *
  * @category   Zend
- * @package    Zend_Controller
- * @subpackage Router
+ * @package    Zend_Router
+ * @subpackage Route
  * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
- * @version    $Id$
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
 /**
  * @namespace
  */
-namespace Zend\Controller\Router\Http;
-use Zend\Controller\Router\Route,
-    Zend\Controller\Router\RouteMatch,
-    Zend\Controller\Request\AbstractRequest,
-    Zend\Controller\Request\Http as HttpRequest;
+namespace Zend\Router\Http;
+
+use Zend\Router\Route,
+    Zend\Router\RouteMatch,
+    Zend\Stdlib\RequestDescription as Request;
 
 /**
  * Regex route.
  *
- * @package    Zend_Controller
- * @subpackage Router
+ * @package    Zend_Router
+ * @subpackage Route
  * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @see        http://manuals.rubyonrails.com/read/chapter/65
@@ -69,11 +68,15 @@ class Regex implements Route
      * match(): defined by Route interface.
      *
      * @see    Route::match()
-     * @param  AbstractRequest $request
+     * @param  Request $request
      * @return RouteMatch
      */
-    public function match(AbstractRequest $request, $pathOffset = null)
+    public function match(Request $request, $pathOffset = null)
     {
+        if (!method_exists($request, 'getRequestUri')) {
+            return null;
+        }
+
         if ($pathOffset !== null) {
             $result = preg_match('(\G' . $this->_regex . ')i', $request->getRequestUri(), $match, null, $pathOffset);
         } else {

@@ -13,8 +13,7 @@
  * to license@zend.com so we can send you a copy immediately.
  *
  * @category   Zend
- * @package    Zend_Controller
- * @subpackage Router
+ * @package    Zend_Router
  * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
@@ -22,13 +21,39 @@
 /**
  * @namespace
  */
-namespace Zend\Controller\Router;
+namespace Zend\Router;
 
 /**
- * @package    Zend_Controller
- * @subpackage Router
+ * @package    Zend_Router
  * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-interface Exception
-{}
+interface RouteStack extends Route
+{
+    /**
+     * Add a route to the stack.
+     * 
+     * @param  string  $name
+     * @param  mixed   $route
+     * @param  integer $priority
+     * @return RouteStack
+     */
+    public function addRoute($name, $route, $priority = null);
+
+    /**
+     * Add multiple routes to the stack.
+     * 
+     * @param  mixed $routes
+     * @return RouteStack
+     */
+    public function addRoutes($routes);
+    
+    /**
+     * Remove a route from the stack.
+     * 
+     * @param  string $name
+     * @return RouteStack
+     */
+    public function removeRoute($name);
+}
+

@@ -13,25 +13,25 @@
  * to license@zend.com so we can send you a copy immediately.
  *
  * @category   Zend
- * @package    Zend_Controller
+ * @package    Zend_Router
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
  */
 
 /**
  * @namespace
  */
-namespace ZendTest\Controller\Router\TestAsset;
-use Zend\Controller\Router\Route;
-use Zend\Controller\Request\AbstractRequest;
+namespace ZendTest\Router\TestAsset;
+
+use Zend\Router\Route,
+    Zend\Stdlib\RequestDescription as Request;
 
 /**
  * Dummy route
  *
  * @category   Zend
- * @package    Zend_Controller
+ * @package    Zend_Router
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
@@ -53,10 +53,10 @@ class DummyRoute implements Route
      * match(): defined by Route interface.
      *
      * @see    Route::match()
-     * @param  AbstractRequest $request
+     * @param  Request $request
      * @return boolean
      */
-    public function match(AbstractRequest $request)
+    public function match(Request $request)
     {
         return true;
     }

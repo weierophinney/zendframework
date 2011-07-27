@@ -13,28 +13,27 @@
  * to license@zend.com so we can send you a copy immediately.
  *
  * @category   Zend
- * @package    Zend_Controller
- * @subpackage Router
+ * @package    Zend_Router
+ * @subpackage Route
  * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
- * @version    $Id$
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
 /**
  * @namespace
  */
-namespace Zend\Controller\Router\Http;
+namespace Zend\Router\Http;
 
 use Traversable,
     Zend\Config\Config,
-    Zend\Controller\Request\AbstractRequest,
-    Zend\Controller\Router\Exception;
+    Zend\Router\Exception,
+    Zend\Stdlib\RequestDescription;
 
 /**
  * Route part.
  *
- * @package    Zend_Controller
- * @subpackage Router
+ * @package    Zend_Router
+ * @subpackage Route
  * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @see        http://manuals.rubyonrails.com/read/chapter/65
@@ -113,10 +112,10 @@ class Part extends TreeRouteStack
      * match(): defined by Route interface.
      *
      * @see    Route::match()
-     * @param  AbstractRequest $request
-     * @return RouteMatch
+     * @param  Request $request
+     * @return RouteMatch|null
      */
-    public function match(AbstractRequest $request, $pathOffset = null)
+    public function match(Request $request, $pathOffset = null)
     {
         $match = $this->route->match($request, $pathOffset);
 
@@ -136,8 +135,10 @@ class Part extends TreeRouteStack
                 }
             }
 
-            if ($this->mayTerminate && $nextOffset === strlen($request->getRequestUri())) {
-                return $match;
+            if (method_exists($request, 'getRequestUri')) {
+                if ($this->mayTerminate && $nextOffset === strlen($request->getRequestUri())) {
+                    return $match;
+                }
             }
         }
 

@@ -13,8 +13,8 @@
  * to license@zend.com so we can send you a copy immediately.
  *
  * @category   Zend
- * @package    Zend_Controller
- * @subpackage Router
+ * @package    Zend_Router
+ * @subpackage Exception
  * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
@@ -22,13 +22,13 @@
 /**
  * @namespace
  */
-namespace Zend\Controller\Router\Exception;
+namespace Zend\Router\Exception;
 
-use Zend\Controller\Router\Exception;
+use Zend\Router\Exception;
 
 /**
- * @package    Zend_Controller
- * @subpackage Router
+ * @package    Zend_Router
+ * @subpackage Exception
  * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */

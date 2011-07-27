@@ -13,8 +13,8 @@
  * to license@zend.com so we can send you a copy immediately.
  *
  * @category   Zend
- * @package    Zend_Controller
- * @subpackage Router
+ * @package    Zend_Router
+ * @subpackage Route
  * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
@@ -22,42 +22,28 @@
 /**
  * @namespace
  */
-namespace Zend\Controller\Router;
-use Zend\Controller\Request\AbstractRequest;
+namespace Zend\Router\Http;
+
+use Zend\Router\Route as BaseRoute,
+    Zend\Stdlib\RequestDescription as Request;
 
 /**
- * Route interface.
+ * Http specific route interface.
  * 
  * @package    Zend_Controller
  * @subpackage Router
  * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-interface Route
+interface Route extends BaseRoute
 {
     /**
-     * Create a new route with given options.
+     * Match a given request with a specified path offset.
      * 
-     * @param  mixed $options
-     * @return void
-     */
-    public function __construct($options = null);
-    
-    /**
-     * Match a given request.
-     * 
-     * @param  AbstractRequest $request
+     * @param  Request $request
+     * @param  integer $pathOffset
      * @return RouteMatch
      */
-    public function match(AbstractRequest $request);
-    
-    /**
-     * Assemble the route.
-     * 
-     * @param  array $params
-     * @param  array $options
-     * @return mixed
-     */
-    public function assemble(array $params = array(), array $options = array());
+    public function match(Request $request, $pathOffset = null);
 }
 

@@ -13,30 +13,25 @@
  * to license@zend.com so we can send you a copy immediately.
  *
  * @category   Zend
- * @package    Zend_Controller
- * @subpackage Router
+ * @package    Zend_Router
  * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
- * @version    $Id$
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
 /**
  * @namespace
  */
-namespace Zend\Controller\Router;
+namespace Zend\Router;
 
 use ArrayAccess,
-    Config,
     Traversable,
-    Zend\Controller\Request,
-    Zend\Controller\Router\Exception,
+    Zend\Stdlib\RequestDescription as Request,
     Zend\Loader\PluginBroker;
 
 /**
  * Simple route stack implementation.
  *
- * @package    Zend_Controller
- * @subpackage Router
+ * @package    Zend_Router
  * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
@@ -96,13 +91,7 @@ class SimpleRouteStack implements RouteStack
      */
     public function setOptions($options)
     {
-        if ($options instanceof Config) {
-            $options = $options->toArray();
-        } elseif ($options instanceof Traversable) {
-            $options = iterator_to_array($options);
-        }
-
-        if (!is_array($options)) {
+        if (!is_array($options) && !$options instanceof Traversable) {
             throw new Exception\InvalidArgumentException(sprintf(
                 'Expected an array or Traversable object; received "%s"',
                 (is_object($options) ? get_class($options) : gettype($options))

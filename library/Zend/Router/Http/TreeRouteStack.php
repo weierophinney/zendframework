@@ -13,26 +13,26 @@
  * to license@zend.com so we can send you a copy immediately.
  *
  * @category   Zend
- * @package    Zend_Controller
- * @subpackage Router
+ * @package    Zend_Router
+ * @subpackage Route
  * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
- * @version    $Id$
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
 /**
  * @namespace
  */
-namespace Zend\Controller\Router\Http;
-use Zend\Controller\Router\SimpleRouteStack;
-use Zend\Controller\Request;
-use Zend\Loader\PluginSpecBroker;
+namespace Zend\Router\Http;
+
+use Zend\Loader\PluginSpecBroker,
+    Zend\Router\SimpleRouteStack,
+    Zend\Stdlib\RequestDescription as Request;
 
 /**
- * Simple route stack implementation.
+ * Tree search implementation.
  *
- * @package    Zend_Controller
- * @subpackage Router
+ * @package    Zend_Router
+ * @subpackage Route
  * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
@@ -47,10 +47,10 @@ class TreeRouteStack extends SimpleRouteStack
     protected function init()
     {
         $this->pluginBroker->getClassLoader()->registerPlugins(array(
-            'literal' => __NAMESPACE__ . '\\Literal',
-            'regex'   => __NAMESPACE__ . '\\Regex',
-            'segment' => __NAMESPACE__ . '\\Segment',
-            'part'    => __NAMESPACE__ . '\\Part',
+            'literal' => __NAMESPACE__ . '\Literal',
+            'regex'   => __NAMESPACE__ . '\Regex',
+            'segment' => __NAMESPACE__ . '\Segment',
+            'part'    => __NAMESPACE__ . '\Part',
         ));
     }
     
@@ -70,7 +70,7 @@ class TreeRouteStack extends SimpleRouteStack
                 'route'         => $route,
                 'may_terminate' => (isset($specs['may_terminate']) && $specs['may_terminate']),
                 'child_routes'  => $specs['routes'],
-                'plugin_broker' => $this->pluginBroker
+                'plugin_broker' => $this->pluginBroker,
             );
 
             $route = $this->pluginBroker->load('part', $options);
