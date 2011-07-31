@@ -124,6 +124,7 @@ class PriorityList implements Iterator, Countable
     protected function sort()
     {
         uasort($this->routes, array($this, 'compare'));
+        $this->sorted = true;
     }
 
     /**
