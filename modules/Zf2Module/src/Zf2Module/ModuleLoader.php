@@ -60,19 +60,33 @@ class ModuleLoader implements ModuleResolver
     public function load($moduleName)
     {
         if (!isset($this->modules[$moduleName])) {
-            $this->modules[$moduleName] = $this->_resolveModule($moduleName);
+            $this->modules[$moduleName] = $this->resolveModule($moduleName);
         }
         return $this->modules[$moduleName];
     }
 
-    protected function _resolveModule($moduleName)
+    protected function resolveModule($moduleName)
     {
+        $moduleClass = null;
         foreach ($this->paths as $path) {
             $file = new SplFileInfo($path . $moduleName . '/Module.php');
             if ($file->isReadable()) {
                 require_once $file->getRealPath();
-                return $moduleName . '\Module';
+                $moduleClass = $moduleName . '\Module';
+            } else {
+                $file = new SplFileInfo($path . $moduleName);
+                if ($file->isReadable() && $file->isFile()) {
+                    require_once $file->getRealPath();
+                    if (strstr($moduleName, '.') !== false) {
+                        $moduleName = explode('.', $moduleName);
+                        $moduleName = array_shift($moduleName);
+                    }
+                    $moduleClass = $moduleName . '\Module';
+                }
             }
+        }
+        if (class_exists($moduleClass)) {
+            return $moduleClass;
         }
         throw new \Exception(sprintf(
             'Unable to load module \'%s\' from module path (%s)',

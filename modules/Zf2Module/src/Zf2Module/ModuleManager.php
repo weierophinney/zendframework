@@ -2,9 +2,11 @@
 
 namespace Zf2Module;
 
-use Zend\Config\Config;
+use Zend\Config\Config,
+    Zend\EventManager\EventCollection,
+    Zend\EventManager\EventManager;
 
-class ModuleCollection
+class ModuleManager
 {
     /**
      * @var ModuleResolver
@@ -15,6 +17,11 @@ class ModuleCollection
      * @var array An array of Module classes of loaded modules
      */
     protected $modules = array();
+
+    /**
+     * @var EventCollection
+     */
+    protected $events;
 
     /**
      * getLoader 
@@ -33,7 +40,7 @@ class ModuleCollection
      * setLoader 
      * 
      * @param ModuleResolver $loader 
-     * @return ModuleCollection
+     * @return ModuleManager
      */
     public function setLoader(ModuleResolver $loader)
     {
@@ -45,13 +52,14 @@ class ModuleCollection
      * loadModules 
      * 
      * @param array $modules 
-     * @return ModuleCollection
+     * @return ModuleManager
      */
     public function loadModules(array $modules)
     {
         foreach ($modules as $moduleName) {
             $this->loadModule($moduleName);
         }
+        $this->events()->trigger('init.post', $this);
         return $this->modules;
     }
 
@@ -67,7 +75,7 @@ class ModuleCollection
             $infoClass = $this->getLoader()->load($moduleName);
             $module = new $infoClass;
             if (is_callable(array($module, 'init'))) {
-                $module->init();
+                $module->init($this->events());
             }
             $this->modules[$moduleName] = $module;
         }
@@ -97,7 +105,7 @@ class ModuleCollection
      * Convenience method
      * 
      * @param Config $config 
-     * @return ModuleCollection
+     * @return ModuleManager
      */
     public static function fromConfig(Config $config)
     {
@@ -108,5 +116,32 @@ class ModuleCollection
         $moduleCollection->getLoader()->registerPaths($config->modulePaths->toArray());
         $moduleCollection->loadModules($config->modules->toArray());
         return $moduleCollection;
+    }
+
+    /**
+     * Set the event manager instance used by this context
+     * 
+     * @param  EventCollection $events 
+     * @return ModuleManager
+     */
+    public function setEventManager(EventCollection $events)
+    {
+        $this->events = $events;
+        return $this;
+    }
+
+    /**
+     * Retrieve the event manager
+     *
+     * Lazy-loads an EventManager instance if none registered.
+     * 
+     * @return EventCollection
+     */
+    public function events()
+    {
+        if (!$this->events instanceof EventCollection) {
+            $this->setEventManager(new EventManager(array(__CLASS__, get_class($this))));
+        }
+        return $this->events;
     }
 }
