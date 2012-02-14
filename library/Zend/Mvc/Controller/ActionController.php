@@ -16,7 +16,8 @@ use ArrayObject,
     Zend\Stdlib\ResponseDescription as Response,
     Zend\Mvc\InjectApplicationEvent,
     Zend\Mvc\LocatorAware,
-    Zend\Mvc\MvcEvent;
+    Zend\Mvc\MvcEvent,
+    Zend\View\Model\ViewModel;
 
 /**
  * Basic action controller
@@ -112,7 +113,7 @@ abstract class ActionController implements Dispatchable, InjectApplicationEvent,
 
         if (!is_object($actionResponse)) {
             if (IsAssocArray::test($actionResponse)) {
-                $actionResponse = new ArrayObject($actionResponse, ArrayObject::ARRAY_AS_PROPS);
+                $actionResponse = new ViewModel($actionResponse);
             }
         }
 
