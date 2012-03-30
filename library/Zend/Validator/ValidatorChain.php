@@ -20,6 +20,8 @@
 
 namespace Zend\Validator;
 
+use Countable;
+
 /**
  * @uses       \Zend\Loader
  * @uses       \Zend\Validator\AbstractValidator
@@ -30,7 +32,7 @@ namespace Zend\Validator;
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class ValidatorChain implements Validator
+class ValidatorChain implements Validator, Countable
 {
     /**
      * Validator chain
@@ -53,6 +55,16 @@ class ValidatorChain implements Validator
      * @deprecated Since 1.5.0
      */
     protected $_errors = array();
+
+    /**
+     * Return the count of attached valicators
+     * 
+     * @return int
+     */
+    public function count()
+    {
+        return count($this->_validators);
+    }
 
     /**
      * Adds a validator to the end of the chain
