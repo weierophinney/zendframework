@@ -256,6 +256,9 @@ class FactoryTest extends TestCase
 
     public function testCanCreateFormsWithInputFilterSpecifications()
     {
+        if (!extension_loaded('mbstring')) {
+            $this->markTestSkipped('Extension "mbstring" not loaded');
+        }
         $form = $this->factory->createForm(array(
             'name'         => 'foo',
             'input_filter' => array(

@@ -41,6 +41,9 @@ class FormTest extends TestCase
 {
     public function setUp()
     {
+        if (!extension_loaded('mbstring')) {
+            $this->markTestSkipped('Extension "mbstring" not loaded');
+        }
         $this->form = new Form;
     }
 
