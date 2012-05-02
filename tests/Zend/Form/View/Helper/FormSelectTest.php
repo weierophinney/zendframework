@@ -87,7 +87,7 @@ class FormSelectTest extends CommonTestCase
         $element = $this->getElement();
         $element->setAttribute('value', array('value1', 'value2'));
 
-        $this->setExpectedException('Zend\Form\Exception', 'multiple');
+        $this->setExpectedException('Zend\Form\Exception\DomainException', 'multiple');
         $markup = $this->helper->render($element);
     }
 
