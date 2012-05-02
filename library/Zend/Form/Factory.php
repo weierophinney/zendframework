@@ -226,7 +226,6 @@ class Factory
      * @param  array|Traversable|ArrayAccess $elements 
      * @param  FieldsetInterface $fieldset 
      * @param  string $method Method invoking this one (for exception messages)
-     * @return void
      */
     protected function prepareAndInjectElements($elements, FieldsetInterface $fieldset, $method)
     {
@@ -247,7 +246,6 @@ class Factory
      * @param  array|Traversable|ArrayAccess $fieldsets 
      * @param  FieldsetInterface $masterFieldset 
      * @param  string $method Method invoking this one (for exception messages)
-     * @return void
      */
     public function prepareAndInjectFieldsets($fieldsets, FieldsetInterface $masterFieldset, $method)
     {
@@ -274,8 +272,7 @@ class Factory
      * 
      * @param  string|array|Traversable $spec 
      * @param  FormInterface $form 
-     * @param  string $method 
-     * @return void
+     * @param  string $method
      * @throws Exception\DomainException for unknown InputFilter class or invalid InputFilter instance
      */
     protected function prepareAndInjectInputFilter($spec, FormInterface $form, $method)
@@ -308,13 +305,12 @@ class Factory
     /**
      * Prepare and inject a named hydrator
      *
-     * Takes a string indicating a hydrator class name, instantiates the class 
+     * Takes a string indicating a hydrator class name, instantiates the class
      * by that name, and injects the hydrator instance into the form.
-     * 
-     * @param  string $hydratorName 
-     * @param  FormInterface $form 
-     * @param  string $method 
-     * @return void
+     *
+     * @param  string        $hydratorName
+     * @param  FormInterface $form
+     * @param  string        $method
      * @throws Exception\DomainException if $hydratorName is not a string, does not resolve to a known class, or the class does not implement Hydrator\HydratorInterface
      */
     protected function prepareAndInjectHydrator($hydratorName, FormInterface $form, $method)

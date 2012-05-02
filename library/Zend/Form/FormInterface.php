@@ -51,8 +51,7 @@ interface FormInterface extends InputFilterAwareInterface, FieldsetInterface
      *
      * Ensures the model is populated with validated values.
      * 
-     * @param  object $model 
-     * @return void
+     * @param object $model
      */
     public function bind($model);
 

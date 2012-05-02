@@ -122,9 +122,10 @@ class Form extends Fieldset implements FormInterface
      * Bind a model to the form
      *
      * Ensures the model is populated with validated values.
-     * 
-     * @param  object $model 
-     * @return void
+     *
+     * @param  object $model
+     * @param  int    $flags
+     * @throws Exception\InvalidArgumentException
      */
     public function bind($model, $flags = FormInterface::VALUES_NORMALIZED)
     {
@@ -304,7 +305,7 @@ class Form extends Fieldset implements FormInterface
     }
 
     /**
-     * Retrive input filter used by this form
+     * Retrieve input filter used by this form
      * 
      * @return null|InputFilterInterface
      */
@@ -318,8 +319,6 @@ class Form extends Fieldset implements FormInterface
 
     /**
      * Hydrate the attached model
-     * 
-     * @return void
      */
     protected function hydrate()
     {

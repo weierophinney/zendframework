@@ -205,7 +205,7 @@ class FormSelect extends AbstractHelper
     }
 
     /**
-     * Invoke helper as functor
+     * Invoke helper as function
      *
      * Proxies to {@link render()}.
      * 
