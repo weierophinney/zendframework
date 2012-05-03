@@ -37,8 +37,8 @@ class ObjectProperty implements HydratorInterface
      *
      * Hydrates an object by setting public properties of the object.
      * 
-     * @param  array $data 
-     * @param  object $object 
+     * @param  array  $data
+     * @param  object $object
      * @return void
      */
     public function hydrate(array $data, $object)

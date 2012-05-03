@@ -42,9 +42,8 @@ class Element implements ElementInterface
 
     /**
      * Constructor
-     * 
+     *
      * @param  null|string|int $name Optional name for the element
-     * @return void
      */
     public function __construct($name = null)
     {
@@ -91,7 +90,7 @@ class Element implements ElementInterface
     /**
      * Retrieve a single element attribute
      * 
-     * @param  string $optionalKey 
+     * @param  string $key
      * @return mixed
      */
     public function getAttribute($key)
@@ -107,7 +106,7 @@ class Element implements ElementInterface
      *
      * Implementation will decide if this will overwrite or merge.
      * 
-     * @param  array|Traversable $arrayOrTraversable 
+     * @param  array|Traversable $arrayOrTraversable
      * @return Element
      */
     public function setAttributes($arrayOrTraversable)
@@ -137,7 +136,7 @@ class Element implements ElementInterface
 
     /**
      * Clear all attributes
-     * 
+     *
      * @return void
      */
     public function clearAttributes()

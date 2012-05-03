@@ -45,7 +45,7 @@ class FormMultiCheckbox extends FormInput
     /**
      * Set value for labelPosition
      *
-     * @param  mixed labelPosition
+     * @param  mixed $labelPosition
      * @return $this
      */
     public function setLabelPosition($labelPosition)
@@ -176,7 +176,7 @@ class FormMultiCheckbox extends FormInput
     }
 
     /**
-     * Invoke helper as functor
+     * Invoke helper as function
      *
      * Proxies to {@link render()}.
      * 
