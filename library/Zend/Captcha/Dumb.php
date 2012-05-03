@@ -26,7 +26,7 @@ namespace Zend\Captcha;
  *
  * Note that only rendering is necessary for word-based captcha
  *
- * @uses       Zend\Captcha\Word
+ * @todo       This likely needs its own validation since it expects the word entered to be the strrev of the word stored.
  * @category   Zend
  * @package    Zend_Captcha
  * @subpackage Adapter
@@ -41,11 +41,21 @@ class Dumb extends Word
      * @param  \Zend\View\Renderer $view
      * @param  mixed $element
      * @return string
-     */
     public function render(\Zend\View\Renderer $view = null, $element = null)
     {
         return 'Please type this word backwards: <b>'
              . strrev($this->getWord())
              . '</b>';
+    }
+     */
+
+    /**
+     * Retrieve optional view helper name to use when rendering this captcha
+     * 
+     * @return string
+     */
+    public function getHelperName()
+    {
+        return 'captcha/dumb';
     }
 }
