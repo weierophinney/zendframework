@@ -66,6 +66,7 @@ interface FieldsetInterface extends
      * Remove a named element or fieldset
      * 
      * @param  string $elementOrFieldset
+     * @return void
      */
     public function remove($elementOrFieldset);
 
@@ -91,6 +92,7 @@ interface FieldsetInterface extends
      * Recursively populate value attributes of elements
      *
      * @param array|\Traversable $data
+     * @return void
      */
     public function populateValues($data);
 }

@@ -35,6 +35,7 @@ interface HydratorInterface
      * 
      * @param  array  $data
      * @param  object $object
+     * @return void
      */
     public function hydrate(array $data, $object);
 }

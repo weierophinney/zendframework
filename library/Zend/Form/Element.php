@@ -106,7 +106,7 @@ class Element implements ElementInterface
      *
      * Implementation will decide if this will overwrite or merge.
      * 
-     * @param  array|Traversable $arrayOrTraversable 
+     * @param  array|Traversable $arrayOrTraversable
      * @return Element
      */
     public function setAttributes($arrayOrTraversable)
@@ -136,6 +136,8 @@ class Element implements ElementInterface
 
     /**
      * Clear all attributes
+     *
+     * @return void
      */
     public function clearAttributes()
     {

@@ -117,6 +117,7 @@ class Fieldset extends Element implements FieldsetInterface
      * Remove a named element or fieldset
      * 
      * @param  string $elementOrFieldset
+     * @return void
      */
     public function remove($elementOrFieldset)
     {
@@ -229,6 +230,7 @@ class Fieldset extends Element implements FieldsetInterface
      * Recursively populate values of attached elements and fieldsets
      * 
      * @param  array|Traversable $data
+     * @return void
      */
     public function populateValues($data)
     {
