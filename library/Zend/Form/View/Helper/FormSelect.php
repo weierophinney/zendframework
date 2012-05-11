@@ -21,6 +21,7 @@
 
 namespace Zend\Form\View\Helper;
 
+use Traversable;
 use Zend\Form\ElementInterface;
 use Zend\Form\Exception;
 
@@ -61,8 +62,9 @@ class FormSelect extends AbstractHelper
 
     /**
      * Render a form <select> element from the provided $element
-     * 
-     * @param  ElementInterface $element 
+     *
+     * @param  ElementInterface $element
+     * @throws \Zend\Form\Exception\DomainException
      * @return string
      */
     public function render(ElementInterface $element)

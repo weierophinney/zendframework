@@ -38,7 +38,9 @@ use Zend\View\Renderer\PhpRenderer;
  */
 abstract class CommonTestCase extends TestCase
 {
+    /** @var \Zend\View\Renderer\RendererInterface */
     public $helper;
+    /** @var PhpRenderer */
     public $renderer;
 
     public function setUp()

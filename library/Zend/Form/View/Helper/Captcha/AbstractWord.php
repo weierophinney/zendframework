@@ -46,7 +46,8 @@ abstract class AbstractWord extends FormInput
     /**
      * Set value for captchaPosition
      *
-     * @param  mixed captchaPosition
+     * @param  mixed $captchaPosition
+     * @throws \Zend\Form\Exception\InvalidArgumentException
      * @return $this
      */
     public function setCaptchaPosition($captchaPosition)
@@ -79,7 +80,7 @@ abstract class AbstractWord extends FormInput
      * Set separator string for captcha and inputs
      *
      * @param  string $separator
-     * @return Word
+     * @return AbstractWord
      */
     public function setSeparator($separator)
     {
@@ -141,7 +142,7 @@ abstract class AbstractWord extends FormInput
     }
 
     /**
-     * Invoke helper as functor
+     * Invoke helper as function
      *
      * Proxies to {@link render()}.
      * 

@@ -67,11 +67,12 @@ class Factory
     /**
      * Create an element, fieldset, or form
      *
-     * Introspects the 'type' key of the provided $spec, and determines what 
-     * type is being requested; if none is provided, assumes the spec 
+     * Introspects the 'type' key of the provided $spec, and determines what
+     * type is being requested; if none is provided, assumes the spec
      * represents simply an element.
-     * 
-     * @param  array|Traversable $spec 
+     *
+     * @param  array|Traversable $spec
+     * @throws Exception\DomainException
      * @return ElementInterface
      */
     public function create($spec)

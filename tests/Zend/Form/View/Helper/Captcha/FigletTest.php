@@ -35,6 +35,8 @@ use ZendTest\Form\View\Helper\CommonTestCase;
  */
 class FigletTest extends CommonTestCase
 {
+    public $captcha;
+
     public function setUp()
     {
         $this->helper  = new FigletCaptchaHelper();

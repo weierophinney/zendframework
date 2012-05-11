@@ -95,8 +95,9 @@ class BaseForm extends Fieldset implements FormInterface
      * Set data to validate and/or populate elements
      *
      * Typically, also passes data on to the composed input filter.
-     * 
-     * @param  array|\ArrayAccess $data 
+     *
+     * @param  array|\Traversable $data
+     * @throws Exception\InvalidArgumentException
      * @return Form
      */
     public function setData($data)
@@ -123,8 +124,10 @@ class BaseForm extends Fieldset implements FormInterface
      * Bind an object to the form
      *
      * Ensures the object is populated with validated values.
-     * 
-     * @param  object $object 
+     *
+     * @param object $object
+     * @param int    $flags
+     * @throws Exception\InvalidArgumentException
      * @return void
      */
     public function bind($object, $flags = FormInterface::VALUES_NORMALIZED)
@@ -183,7 +186,8 @@ class BaseForm extends Fieldset implements FormInterface
      * Validate the form
      *
      * Typically, will proxy to the composed input filter.
-     * 
+     *
+     * @throws Exception\DomainException
      * @return bool
      */
     public function isValid()
@@ -244,10 +248,11 @@ class BaseForm extends Fieldset implements FormInterface
     /**
      * Retrieve the validated data
      *
-     * By default, retrieves normalized values; pass one of the 
+     * By default, retrieves normalized values; pass one of the
      * FormInterface::VALUES_* constants to shape the behavior.
-     * 
-     * @param  int $flag 
+     *
+     * @param int $flag
+     * @throws Exception\DomainException
      * @return array|object
      */
     public function getData($flag = FormInterface::VALUES_NORMALIZED)
@@ -277,6 +282,7 @@ class BaseForm extends Fieldset implements FormInterface
      *
      * Typically, proxies to the composed input filter
      *
+     * @throws Exception\InvalidArgumentException
      * @return FormInterface
      */
     public function setValidationGroup()

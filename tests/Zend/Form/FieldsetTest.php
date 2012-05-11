@@ -34,6 +34,9 @@ use Zend\Form\Fieldset;
  */
 class FieldsetTest extends TestCase
 {
+    /** @var Fieldset */
+    public $fieldset;
+
     public function setUp()
     {
         $this->fieldset = new Fieldset();

@@ -58,7 +58,7 @@ interface ElementInterface
     /**
      * Retrieve a single element attribute
      * 
-     * @param  string $optionalKey 
+     * @param  string $key
      * @return mixed
      */
     public function getAttribute($key);

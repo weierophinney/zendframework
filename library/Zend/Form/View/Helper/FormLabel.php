@@ -48,8 +48,10 @@ class FormLabel extends AbstractHelper
 
     /**
      * Generate an opening label tag
-     * 
-     * @param  null|array|ElementInterface $attributesOrElement 
+     *
+     * @param  null|array|ElementInterface $attributesOrElement
+     * @throws \Zend\Form\Exception\DomainException
+     * @throws \Zend\Form\Exception\InvalidArgumentException
      * @return string
      */
     public function openTag($attributesOrElement = null)
@@ -99,10 +101,11 @@ class FormLabel extends AbstractHelper
      *
      * Always generates a "for" statement, as we cannot assume the form input
      * will be provided in the $labelContent.
-     * 
-     * @param  ElementInterface $element 
-     * @param  null|string $labelContent 
-     * @param  string $position 
+     *
+     * @param  ElementInterface $element
+     * @param  null|string      $labelContent
+     * @param  string           $position
+     * @throws \Zend\Form\Exception\DomainException
      * @return string
      */
     public function __invoke(ElementInterface $element, $labelContent = null, $position = null)

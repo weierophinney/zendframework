@@ -39,8 +39,15 @@ use Zend\Stdlib\Hydrator;
  */
 class BaseFormTest extends TestCase
 {
+    /** @var Form */
+    public $form;
+
     public function setUp()
     {
+        if (!extension_loaded('mbstring')) {
+            $this->markTestSkipped('Extension mbstring not available');
+        }
+
         $this->form = new Form;
     }
 

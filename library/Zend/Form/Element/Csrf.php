@@ -83,13 +83,13 @@ class Csrf extends Element implements InputProviderInterface
      * 
      * @param  string $name 
      * @param  mixed $value 
-     * @return Csrf
+     * @return Csrf|null
      */
     public function setAttribute($name, $value)
     {
         if ('value' == $name) {
             // Do not allow setting this
-            return;
+            return null;
         }
         return parent::setAttribute($name, $value);
     }

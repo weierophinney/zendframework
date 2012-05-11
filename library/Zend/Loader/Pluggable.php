@@ -49,7 +49,7 @@ interface Pluggable
     /**
      * Get plugin instance
      * 
-     * @param  string     $plugin  Name of plugin to return
+     * @param  string     $name    Name of plugin to return
      * @param  null|array $options Options to pass to plugin constructor (if not already instantiated)
      * @return mixed
      */
