@@ -69,7 +69,6 @@ class FormCaptchaTest extends CommonTestCase
      * Determine system TMP directory
      *
      * @return string
-     * @throws Zend_File_Transfer_Exception if unable to determine directory
      */
     protected function getTmpDir()
     {

@@ -24,6 +24,7 @@ namespace Zend\Form\View\Helper;
 use Traversable;
 use Zend\Form\ElementInterface;
 use Zend\Form\Exception;
+use Zend\Loader\Pluggable;
 
 /**
  * @category   Zend
@@ -37,6 +38,7 @@ class FormMultiCheckbox extends FormInput
     const LABEL_APPEND  = 'append';
     const LABEL_PREPEND = 'prepend';
 
+    /** @var FormInput */
     protected $inputHelper;
     protected $labelHelper;
     protected $labelPosition = self::LABEL_APPEND;
@@ -45,7 +47,10 @@ class FormMultiCheckbox extends FormInput
     /**
      * Set value for labelPosition
      *
-     * @param  mixed labelPosition
+     * @see LABEL_APPEND
+     * @see LABEL_PREPEND
+     * @param string $labelPosition labelPosition
+     * @throws \Zend\Form\Exception\InvalidArgumentException
      * @return $this
      */
     public function setLabelPosition($labelPosition)
@@ -98,8 +103,9 @@ class FormMultiCheckbox extends FormInput
 
     /**
      * Render a form <input> element from the provided $element
-     * 
-     * @param  ElementInterface $element 
+     *
+     * @param  ElementInterface $element
+     * @throws \Zend\Form\Exception\DomainException
      * @return string
      */
     public function render(ElementInterface $element)
@@ -176,7 +182,7 @@ class FormMultiCheckbox extends FormInput
     }
 
     /**
-     * Invoke helper as functor
+     * Invoke helper as function
      *
      * Proxies to {@link render()}.
      * 

@@ -61,7 +61,7 @@ interface FormInterface extends FieldsetInterface
      * Set input filter
      * 
      * @param  InputFilterInterface $inputFilter 
-     * @return InputFilterAwareInterface
+     * @return \Zend\InputFilter\InputFilterAwareInterface
      */
     public function setInputFilter(InputFilterInterface $inputFilter);
 
@@ -74,8 +74,8 @@ interface FormInterface extends FieldsetInterface
 
     /**
      * Set the hydrator to use when binding an object to the form
-     * 
-     * @param  Hydrator\HydratorInterface $hydrator 
+     *
+     * @param  Hydrator\HydratorInterface $hydrator
      * @return FormInterface
      */
     public function setHydrator(Hydrator\HydratorInterface $hydrator);

@@ -46,12 +46,13 @@ class Fieldset extends Element implements FieldsetInterface
     /**
      * Add an element or fieldset
      *
-     * $flags could contain metadata such as the alias under which to register 
+     * $flags could contain metadata such as the alias under which to register
      * the element or fieldset, order in which to prioritize it, etc.
-     * 
+     *
      * @todo   Should we detect if the element/fieldset name conflicts?
-     * @param  ElementInterface $elementOrFieldset 
-     * @param  array $flags
+     * @param  ElementInterface $elementOrFieldset
+     * @param  array            $flags
+     * @throws Exception\InvalidArgumentException
      * @return FieldsetInterface
      */
     public function add($elementOrFieldset, array $flags = array())
@@ -176,6 +177,7 @@ class Fieldset extends Element implements FieldsetInterface
      * Set a hash of element names/messages to use when validation fails
      *
      * @param  array|\Traversable $messages
+     * @throws Exception\InvalidArgumentException
      * @return FieldsetInterface
      */
     public function setMessages($messages)
@@ -202,11 +204,12 @@ class Fieldset extends Element implements FieldsetInterface
     /**
      * Get validation error messages, if any
      *
-     * Returns a hash of element names/messages for all elements failing 
-     * validation, or, if $elementName is provided, messages for that element 
+     * Returns a hash of element names/messages for all elements failing
+     * validation, or, if $elementName is provided, messages for that element
      * only.
-     * 
-     * @param  null|string $elementName 
+     *
+     * @param  null|string $elementName
+     * @throws Exception\InvalidArgumentException
      * @return array|Traversable
      */
     public function getMessages($elementName = null)
@@ -237,8 +240,9 @@ class Fieldset extends Element implements FieldsetInterface
 
     /**
      * Recursively populate values of attached elements and fieldsets
-     * 
-     * @param  array|Traversable $data 
+     *
+     * @param  array|Traversable $data
+     * @throws Exception\InvalidArgumentException
      * @return void
      */
     public function populateValues($data)

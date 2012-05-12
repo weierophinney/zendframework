@@ -38,6 +38,8 @@ class ReCaptchaTest extends CommonTestCase
 {
     protected $publicKey  = TESTS_ZEND_SERVICE_RECAPTCHA_PUBLIC_KEY;
     protected $privateKey = TESTS_ZEND_SERVICE_RECAPTCHA_PRIVATE_KEY;
+    /** @var ReCaptcha */
+    public $captcha;
 
     public function setUp()
     {

@@ -21,6 +21,7 @@
 
 namespace Zend\Form\View\Helper;
 
+use Traversable;
 use Zend\Form\ElementInterface;
 use Zend\Form\Exception;
 
@@ -109,8 +110,10 @@ class FormElementErrors extends AbstractHelper
 
     /**
      * Render validation errors for the provided $element
-     * 
-     * @param  ElementInterface $element 
+     *
+     * @param ElementInterface $element
+     * @param array            $attributes
+     * @throws \Zend\Form\Exception\DomainException
      * @return string
      */
     public function render(ElementInterface $element, array $attributes = array())
@@ -149,7 +152,7 @@ class FormElementErrors extends AbstractHelper
     }
 
     /**
-     * Invoke helper as functor
+     * Invoke helper as function
      *
      * Proxies to {@link render()}.
      * 

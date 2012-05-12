@@ -39,7 +39,8 @@ class ReCaptcha extends FormInput
     /**
      * Render ReCaptcha form elements
      *
-     * @param  ElementInterface $element 
+     * @param  ElementInterface $element
+     * @throws \Zend\Form\Exception\DomainException
      * @return string
      */
     public function render(ElementInterface $element)
@@ -72,7 +73,7 @@ class ReCaptcha extends FormInput
     }
 
     /**
-     * Invoke helper as functor
+     * Invoke helper as function
      *
      * Proxies to {@link render()}.
      * 

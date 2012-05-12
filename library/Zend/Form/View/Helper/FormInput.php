@@ -105,8 +105,9 @@ class FormInput extends AbstractHelper
 
     /**
      * Render a form <input> element from the provided $element
-     * 
-     * @param  ElementInterface $element 
+     *
+     * @param  ElementInterface $element
+     * @throws \Zend\Form\Exception\DomainException
      * @return string
      */
     public function render(ElementInterface $element)
@@ -131,7 +132,7 @@ class FormInput extends AbstractHelper
     }
 
     /**
-     * Invoke helper as functor
+     * Invoke helper as function
      *
      * Proxies to {@link render()}.
      * 

@@ -55,8 +55,9 @@ class FormTextarea extends AbstractHelper
 
     /**
      * Render a form <textarea> element from the provided $element
-     * 
-     * @param  ElementInterface $element 
+     *
+     * @param  ElementInterface $element
+     * @throws \Zend\Form\Exception\DomainException
      * @return string
      */
     public function render(ElementInterface $element)
@@ -82,7 +83,7 @@ class FormTextarea extends AbstractHelper
     }
 
     /**
-     * Invoke helper as functor
+     * Invoke helper as function
      *
      * Proxies to {@link render()}.
      * 

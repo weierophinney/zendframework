@@ -123,10 +123,11 @@ class FormElementTest extends TestCase
             'label'  => 'value2',
             'last'   => 'value3',
         ));
+        $element->setAttribute('value', 'value2');
         $markup  = $this->helper->render($element);
-
         $this->assertEquals(3, substr_count($markup, '<' . $inputType), $markup);
         $this->assertContains($additionalMarkup, $markup);
+        $this->assertContains('value="value2"', $markup);
     }
 
     public function testRendersCaptchaAsExpected()

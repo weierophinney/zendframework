@@ -37,6 +37,9 @@ use Zend\Validator;
  */
 class FactoryTest extends TestCase
 {
+    /** @var FormFactory */
+    public $factory;
+
     public function setUp()
     {
         $this->factory = new FormFactory();
@@ -256,6 +259,10 @@ class FactoryTest extends TestCase
 
     public function testCanCreateFormsWithInputFilterSpecifications()
     {
+        if (!extension_loaded('mbstring')) {
+            $this->markTestSkipped('Extension mbstring not available');
+        }
+
         $form = $this->factory->createForm(array(
             'name'         => 'foo',
             'input_filter' => array(
