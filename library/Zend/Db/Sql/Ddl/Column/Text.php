@@ -15,4 +15,33 @@ class Text extends AbstractLengthColumn
      * @var string
      */
     protected $type = 'TEXT';
+
+    /**
+     * @var string
+     */
+    protected $specification = '%s TEXT %s %s';
+
+    /**
+     * @return array
+     */
+    public function getExpressionData()
+    {
+        $spec   = $this->specification;
+        $params = array();
+
+        $types    = array(self::TYPE_IDENTIFIER);
+        $params[] = $this->name;
+
+        $types[]  = self::TYPE_LITERAL;
+        $params[] = (!$this->isNullable) ? 'NOT NULL' : '';
+
+        $types[]  = ($this->default !== null) ? self::TYPE_VALUE : self::TYPE_LITERAL;
+        $params[] = ($this->default !== null) ? $this->default : '';
+
+        return array(array(
+            $spec,
+            $params,
+            $types,
+        ));
+    }
 }
